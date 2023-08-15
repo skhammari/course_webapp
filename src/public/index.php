@@ -1,9 +1,9 @@
 <?php
 
-	// Loading composer autoload
 	use App\App;
 	use App\Core\Router;
 
+	// Loading composer autoload
 	require_once __DIR__ . '/../vendor/autoload.php';
 
 	// loading env
