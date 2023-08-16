@@ -17,8 +17,8 @@
 			]);
 		}
 
-		public function all(): array|bool
+		/*public function all(): array|bool
 		{
 			return $this->db->get($this->table);
-		}
+		}*/
 	}

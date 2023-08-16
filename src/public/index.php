@@ -2,6 +2,8 @@
 
 	use App\App;
 	use App\Config;
+	use App\Container;
+	use App\Core\Controllers\CourseController;
 	use App\Core\Router;
 
 	// Loading composer autoload
@@ -14,14 +16,15 @@
 	const STORAGE_PATH = __DIR__ . '/../storage';
 	const VIEW_PATH = __DIR__ . '/../views';
 
-	$router = new Router();
+	$container = new Container();
+	$router = new Router($container);
 	$router
-		->get('/', [\App\Core\Controllers\CourseController::class, 'list'])
-		->get('/create', [\App\Core\Controllers\CourseController::class, 'create'])
-		->post('/course', [\App\Core\Controllers\CourseController::class, 'store']);
+		->get('/', [CourseController::class, 'list'])
+		->get('/create', [CourseController::class, 'create'])
+		->post('/course', [CourseController::class, 'store']);
 
 	(new App(
 		router : $router,
 		request: ['uri' => $_SERVER['REQUEST_URI'], 'method' => $_SERVER['REQUEST_METHOD']],
-		config: new Config($_ENV)
+		config : new Config($_ENV)
 	))->run();

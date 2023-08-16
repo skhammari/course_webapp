@@ -3,11 +3,18 @@
 	namespace App\Core\Controllers;
 
 	use App\Core\View;
+	use App\Repositories\CourseRepository;
 
 	class CourseController
 	{
+		public function __construct(private CourseRepository $courseRepository)
+		{
+		}
+
 		public function list(): View
 		{
+			$courses = $this->courseRepository->getAll();
+			var_dump($courses);
 			return View::make('courses/list');
 		}
 
