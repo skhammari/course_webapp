@@ -16,25 +16,30 @@
 		{
 			$courses = $this->courseRepository->getAll();
 
-			return $this->twig->render('courses/list.html', [
+			return $this->twig->render('index.html.twig', [
 				'courses' => $courses
 			]);
-			/*return View::make('courses/list');*/
 		}
 
-		public function create(): View
+		public function create(): string
 		{
-			return View::make('courses/create');
+			return $this->twig->render('create.html.twig');
 		}
 
-		public function store(): View
+		public function store(): void
 		{
-			$courseName = $_POST['course_name'];
-			$courseDescription = $_POST['course_description'];
+			$name = $_POST['name'];
+			$instructor = $_POST['instructor'];
+			$description = $_POST['description'];
 
-			return View::make('courses/store', [
-				'courseName'        => $courseName,
-				'courseDescription' => $courseDescription
-			]);
+			$this->courseRepository->create($name, $instructor, $description);
+
+			View::redirect('/');
+
+			/*$courses = $this->courseRepository->getAll();
+
+			return $this->twig->render('index.html.twig', [
+				'courses' => $courses
+			]);*/
 		}
 	}

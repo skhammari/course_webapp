@@ -13,7 +13,8 @@
 		{
 			$loader = new FilesystemLoader(VIEW_PATH);
 			$this->twig = new Environment($loader, [
-				'cache'       => STORAGE_PATH . '/cache',
+				/*'cache'       => STORAGE_PATH . '/cache',*/
+				'cache' => false,
 				'auto_reload' => true,
 			]);
 		}

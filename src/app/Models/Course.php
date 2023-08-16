@@ -2,6 +2,18 @@
 
 	namespace App\Models;
 
+	/**
+	 * Class Course
+	 * @package App\Models
+	 * @property int $id
+	 * @property string $name
+	 * @property string $instructor
+	 * @property string $description
+	 * @property string $credits
+	 * @property string $created_at
+	 * @property string $updated_at
+	 * @property string $status
+	 */
 	class Course extends Model
 	{
 		public function find(int $id): array|bool

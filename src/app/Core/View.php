@@ -1,50 +1,54 @@
 <?php
 
-    namespace App\Core;
+	namespace App\Core;
 
-    use App\Core\Exception\ViewNotFoundException;
+	use App\Core\Exception\ViewNotFoundException;
 
-    class View
-    {
-        public function __construct(
-            protected string $view,
-            protected array  $params = []
-        )
-        {
-        }
+	class View
+	{
+		public function __construct(
+			protected string $view,
+			protected array $params = []
+		) {
+		}
 
-        public static function make(string $string, array $params = []): static
-        {
-            return new static($string, $params);
-        }
+		public static function make(string $string, array $params = []): static
+		{
+			return new static($string, $params);
+		}
 
-	    /**
-	     * @throws ViewNotFoundException
-	     */
-	    public function render(): string
-        {
-            $viewPath = VIEW_PATH . '/' . $this->view . '.php';
+		public static function redirect(string $string)
+		{
+			header('Location: ' . $string);
+		}
 
-            if (!file_exists($viewPath)) {
-                throw new ViewNotFoundException();
-            }
+		/**
+		 * @throws ViewNotFoundException
+		 */
+		public function render(): string
+		{
+			$viewPath = VIEW_PATH . '/' . $this->view . '.php';
 
-            foreach ($this->params as $key => $value) {
-                $$key = $value;
-            }
+			if (!file_exists($viewPath)) {
+				throw new ViewNotFoundException();
+			}
 
-            ob_start();
+			foreach ($this->params as $key => $value) {
+				$$key = $value;
+			}
 
-            include $viewPath;
+			ob_start();
 
-            return (string)ob_get_clean();
-        }
+			include $viewPath;
 
-	    /**
-	     * @throws ViewNotFoundException
-	     */
-	    public function __toString(): string
+			return (string)ob_get_clean();
+		}
+
+		/**
+		 * @throws ViewNotFoundException
+		 */
+		public function __toString(): string
 		{
 			return $this->render();
 		}
-    }
+	}

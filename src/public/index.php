@@ -21,7 +21,7 @@
 	$router
 		->get('/', [CourseController::class, 'list'])
 		->get('/create', [CourseController::class, 'create'])
-		->post('/course', [CourseController::class, 'store']);
+		->post('/store', [CourseController::class, 'store']);
 
 	(new App(
 		container: $container,

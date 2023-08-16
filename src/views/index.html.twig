@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Courses{% endblock %}
+
+{% block content %}
+
+    <h1>Courses</h1>
+
+    <h1>All Courses</h1>
+    {% if courses is empty %}
+        <p>No courses found</p>
+    {% else %}
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Instructor</th>
+                <th>Description</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for course in courses %}
+                <tr>
+                    <td>{{ course.name }}</td>
+                    <td>{{ course.instructor }}</td>
+                    <td>{{ course.description }}</td>
+                    <td>{{ course.createdAt }}</td>
+                    <td>{{ course.updatedAt }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <a href="/create">Create new course</a>
+
+{% endblock %}
