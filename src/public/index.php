@@ -14,10 +14,9 @@
 
 	$router = new Router();
 	$router
-		->get('/', [BlogController::class, 'index'])
-		->get('/article', [BlogController::class, 'show'])
-		->get('/article/create', [BlogController::class, 'create'])
-		->post('/article/create', [BlogController::class, 'store']);
+		->get('/', [\App\Core\Controllers\CourseController::class, 'list'])
+		->get('/create', [\App\Core\Controllers\CourseController::class, 'create'])
+		->post('/course', [\App\Core\Controllers\CourseController::class, 'store']);
 
 	(new App(
 		router : $router,

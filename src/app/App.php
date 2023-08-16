@@ -22,7 +22,7 @@
 			} catch (RouteNotFoundException) {
 				http_response_code(404);
 
-				echo View::make('error/404')->render();
+				echo View::make('errors/404');
 			}
 		}
 	}
