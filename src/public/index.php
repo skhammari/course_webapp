@@ -10,6 +10,7 @@
 	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 	$dotenv->load();
 
+	const STORAGE_PATH = __DIR__ . '/../storage';
 	const VIEW_PATH = __DIR__ . '/../views';
 
 	$router = new Router();

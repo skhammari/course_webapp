@@ -5,6 +5,8 @@
 	use App\Core\Exception\RouteNotFoundException;
 	use App\Core\Router;
 	use App\Core\View;
+	use Twig\Environment;
+	use Twig\Loader\FilesystemLoader;
 
 	class App
 	{
@@ -14,6 +16,11 @@
 
 		public function run(): void
 		{
+			$loader = new FilesystemLoader(VIEW_PATH);
+			$twig = new Environment($loader, [
+				'cache' => STORAGE_PATH . '/cache',
+			]);
+
 			try {
 				echo $this->router->resolve(
 					$this->request['uri'],
