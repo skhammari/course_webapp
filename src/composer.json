@@ -1,23 +1,24 @@
 {
-    "name": "skhammari/iable",
-    "description": "a simple course listing website",
-    "type": "project",
-    "license": "MIT",
-    "version": "1.0.0",
-    "authors": [
-        {
-            "name": "skhammari",
-            "email": "skhammari@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/"
-        }
-    },
-    "require": {
-        "php": ">=8.1",
-        "vlucas/phpdotenv": "^5.5",
-        "twig/twig": "^3.7"
+  "name": "skhammari/iable",
+  "description": "a simple course listing website",
+  "type": "project",
+  "license": "MIT",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "skhammari",
+      "email": "skhammari@gmail.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "require": {
+    "php": ">=8.1",
+    "vlucas/phpdotenv": "^5.5",
+    "twig/twig": "^3.7",
+    "ext-pdo": "*"
+  }
 }

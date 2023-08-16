@@ -22,7 +22,7 @@
 			$courseDescription = $_POST['course_description'];
 
 			return View::make('courses/store', [
-				'courseName' => $courseName,
+				'courseName'        => $courseName,
 				'courseDescription' => $courseDescription
 			]);
 		}
