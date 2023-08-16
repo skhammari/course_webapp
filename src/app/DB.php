@@ -55,6 +55,19 @@
 			return $this->pdo->lastInsertId();
 		}
 
+		public function find(string $table, int $id): \stdClass|bool
+		{
+			$stmt = $this->pdo->prepare("SELECT * FROM $table WHERE id = ?");
+			$stmt->execute([$id]);
+			$result = $stmt->fetch(PDO::FETCH_OBJ);
+
+			if ($result) {
+				return $result;
+			}
+
+			return false;
+		}
+
 		public function get(
 			string $table,
 			string $condition = "",
