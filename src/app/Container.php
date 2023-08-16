@@ -19,7 +19,11 @@
 			if ($this->has($id)) {
 				$service = $this->services[$id];
 
-				return $service($this);
+				if (is_callable($service)) {
+					return $service($this);
+				}
+
+				$id = $service;
 			}
 
 			return $this->resolve($id);
@@ -30,7 +34,7 @@
 			return isset($this->services[$id]);
 		}
 
-		public function set(string $id, callable $concrete): void
+		public function set(string $id, callable|string $concrete): void
 		{
 			$this->services[$id] = $concrete;
 		}

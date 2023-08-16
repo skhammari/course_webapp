@@ -11,12 +11,14 @@
 	class App
 	{
 		private static DB $db;
-		private static Container $container;
 
-		public function __construct(protected Router $router, protected array $request, protected Config $config)
-		{
+		public function __construct(
+			protected Container $container,
+			protected Router $router,
+			protected array $request,
+			protected Config $config
+		) {
 			static::$db = new DB($config->db);
-			static::$container = new Container();
 		}
 
 		public static function db(): DB
@@ -26,11 +28,6 @@
 
 		public function run(): void
 		{
-			$loader = new FilesystemLoader(VIEW_PATH);
-			$twig = new Environment($loader, [
-				'cache' => STORAGE_PATH . '/cache',
-			]);
-
 			try {
 				echo $this->router->resolve(
 					$this->request['uri'],

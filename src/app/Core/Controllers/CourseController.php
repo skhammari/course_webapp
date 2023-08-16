@@ -5,17 +5,21 @@
 	use App\Core\View;
 	use App\Repositories\CourseRepository;
 
-	class CourseController
+	class CourseController extends BaseController
 	{
 		public function __construct(private CourseRepository $courseRepository)
 		{
+			$this->loadTwig();
 		}
 
-		public function list(): View
+		public function list(): string
 		{
 			$courses = $this->courseRepository->getAll();
-			var_dump($courses);
-			return View::make('courses/list');
+
+			return $this->twig->render('courses/list.html', [
+				'courses' => $courses
+			]);
+			/*return View::make('courses/list');*/
 		}
 
 		public function create(): View
